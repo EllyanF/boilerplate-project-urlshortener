@@ -52,11 +52,11 @@ app.post('/api/shorturl', async (req, res) => {
   await Url.create({ original_url: urlSent }, (err, data) => {
     err ? console.error(err) : res.json({
       "original_url": data.original_url, "short_url": data._id
-    })
+    });
   });
 });
 
-app.get('/api/shorturl/:short_url/', (req, res) => {
+app.get('/api/shorturl/:short_url', (req, res) => {
   connection();
   var shortUrl = req.params.short_url
   Url.findById(shortUrl, (err, urlFound) => {
